@@ -10,8 +10,6 @@ from reviews.models import (
     User
 )
 
-from reviews.models import Category, Comment, Genre, Review, Title, User
-
 
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,21 +62,6 @@ class CategoriesSerializer(serializers.ModelSerializer):
         model = Category
         exclude = ("id",)
         lookup_field = "slug"
-
-
-class TitleCreateSerializer(serializers.ModelSerializer):
-    """Серилизатор для создания тайтла."""
-
-    genre = serializers.SlugRelatedField(
-        queryset=Genre.objects.all(),
-        slug_field="slug",
-        many=True,
-    )
-    category = serializers.SlugRelatedField(
-        queryset=Genre.objects.all(),
-        slug_field="slug",
-    )
-# 
 
 
 class TitleCreateSerializer(serializers.ModelSerializer):
